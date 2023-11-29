@@ -2,7 +2,7 @@ from . import __version__ as app_version
 
 app_name = "digio"
 app_title = "Digio"
-app_publisher = "Wahni It Solutions"
+app_publisher = "Wahni IT Solutions"
 app_description = "Frappe Digio Integration"
 app_email = "info@wahni.com"
 app_license = "MIT"

@@ -10,7 +10,7 @@ setup(
 	name="digio",
 	version=version,
 	description="Frappe Digio Integration",
-	author="Wahni It Solutions",
+	author="Wahni IT Solutions",
 	author_email="info@wahni.com",
 	packages=find_packages(),
 	zip_safe=False,
