@@ -2,7 +2,8 @@
 # For license information, please see license.txt
 
 import frappe
-import base64
+from frappe.integrations.utils import create_request_log
+# import base64
 import requests
 from requests.auth import HTTPBasicAuth
 import io
@@ -29,5 +30,27 @@ class Digio():
 		}
 		response = requests.post(url, auth=self.auth, files=payload)
 		response.raise_for_status()
-		return response.json()
+		response_data = response.json()
+		log_request("ID", response_data)
+		return response_data
 
+
+def log_request(document_type, output):
+	request_log = create_request_log(
+		{},
+		request_description=document_type,
+		service_name="Digio",
+		output=pretty_json(output),
+		status="Completed"
+	)
+	return request_log
+
+
+def pretty_json(obj):
+	if not obj:
+		return ""
+
+	if isinstance(obj, str):
+		return obj
+
+	return frappe.as_json(obj, indent=4)
